@@ -52,14 +52,47 @@
         <div ng-controller="SubCtrl">
                 Sono fuori dal mainCtrl -> non ho l'ereditarietà, pertanto non verrà visualizzato il numero di film available: {{title}}    {{mc.movies.length}}
             </div>
-        <div  ng-controller="MainCtrl as mc"><!-- ControllerAs syntax, mc punta ad un'istanza di MainCtrl -->
+        <div  ng-controller="MainCtrl as mc" class='row'><!-- ControllerAs syntax, mc punta ad un'istanza di MainCtrl -->
             <div ng-controller="SubCtrl">
                 Sono dentro il MainCtrl -> ho l'ereditarietà e posso vedere tutto ciò che è dentro il MainCtrl (variabili, metodi) {{title}}    {{mc.movies.length}}
             </div>
-            <div ng-repeat="movie in mc.movies" style="float: left;">
+            <div class='col-xs-8'>
+                <h2>Movies</h2>
+            <div ng-repeat="movie in mc.movies" style="clear: both;  ">
                 <h3>Titolo: {{movie.title}}</h3> 
-                <img   ng-src='{{movie.image}}'  style="float: left;" />
+                <img   ng-src='{{movie.image}}'  style="float: left; margin-right: 10px " />
                 <p ng-bind="movie.description"></p> 
+            </div>
+            </div>   
+            <div class='col-xs-4'>
+                <h2>Add</h2>
+                <div class='form-group'>
+                    <label>Title</label>
+                    <input class="form-control" ng-keyup="mc.validateTitle()" placeholder="Inserisci Titolo" ng-model="mc.newMovieTitle" />
+                </div>
+                <div class='form-group'>
+                    <label>Immagine</label>
+                    <input class="form-control" placeholder="Immagine" ng-model="mc.newMovieImage"/>
+                    <div>
+                        <h4>Preview</h4>
+                        <img ng-src='{{mc.newMovieImage}}' >
+                    </div>
+                </div>
+                <div class='form-group'>
+                    <label>Category</label>
+                    <select class='form-control' ng-change="checkCategorySelected()" ng-model="mc.newMovieCategory">
+                        <option value=""></option>
+                        <option value="Avventura">Avventura</option>
+                        <option value="Commedia">Commedia   </option>
+                        <option value="Giallo">Giallo</option>
+                        <option value="Thriller">Thriller</option>
+                    </select>
+                </div>
+                <div class='form-group' >
+                    <label>Descrizione</label>
+                    <textarea class="form-control" placeholder="Inserisci Descrizione" ng-blur="checkDescription()" ng-model="mc.newMovieDescription"></textarea>
+                </div>
+                <button class="btn btn-info" ng-click="mc.addMovie()">Add</button>   
             </div>
         </div>
         <div ng-controller="FormCtrl">

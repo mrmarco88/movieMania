@@ -54,6 +54,28 @@ angular.module('movieManiaApp')
 
     vm.movies=movieList; //se uso il ControllerAs nella vista devo usare movie in mc.movies
    //$scope.movies=movieList; //se uso lo scope, nella vista devo usare solo movie
+   vm.newMovieTitle='';
+   vm.newMovieDescription='';
+   vm.newMovieImage='';
+   
+   vm.validateTitle =  function validateTitle() {
+       if(vm.newMovieTitle.length>0){
+           console.debug(vm.newMovieTitle);
+       }else{
+           window.alert('Title is Required');
+       }
+   };
+    
+   vm.addMovie = function addMovie(){
+     var movie = {
+         title:vm.newMovieTitle,
+         //category: vm.newMovieCategory,
+         image:vm.newMovieImage,
+         description: vm.newMovieDescription
+         
+        };
+     vm.movies.push(movie);
+   };
   };
   
   
