@@ -41,14 +41,17 @@ angular.module('movieManiaApp')
     var movieList = [{
         title:'Assassin\'s Creed',
         image:'http://s3.foxmovies.com/foxmovies/production/films/111/images/posters/484-film-page-large.jpg',
+        category:'Azione',
         description:'Assassin\'s Creed è un film del 2016 diretto da Justin Kurzel.Basato sull\'omonima serie videoludica sviluppata da Ubisoft, anche produttrice della pellicola, il film è una storia originale ambientata nello stesso universo dei videogiochi.'
     },{
         title:'Inception',
         image:'http://www.ilgiornale.it/sites/default/files/foto/2015/06/04/1433427454-inception.jpg',
+        category:'Azione',
         description:'Inception è un film del 2010 scritto, prodotto e diretto da Christopher Nolan e interpretato da Leonardo DiCaprio, Tom Hardy, Ken Watanabe, Joseph Gordon-Levitt, Ellen Page, Marion Cotillard e Cillian Murphy, vincitore di 4 premi Oscar 2011: miglior fotografia, miglior sonoro, miglior montaggio sonoro e migliori effetti speciali.'
     },{
         title:'Sette anni in Tibet',
         image:'http://guidatv.sky.it/app/guidatv/images/epgimages/2012/12/27/sette-anni-in-tibet-visore.13318_big.jpg',
+        category:'Drammatico',
         description:'Sette anni in Tibet (Seven Years in Tibet) è un film del 1997 diretto da Jean-Jacques Annaud, ispirato ad un libro autobiografico scritto da Heinrich Harrer e pubblicato nel 1953.La colonna sonora è composta da John Williams. I soli del violoncello sono eseguiti da Yo-Yo Ma.'
     }];
 
@@ -71,10 +74,22 @@ angular.module('movieManiaApp')
          title:vm.newMovieTitle,
          //category: vm.newMovieCategory,
          image:vm.newMovieImage,
-         description: vm.newMovieDescription
+         description: vm.newMovieDescription,
+         category:vm.newMovieCategory
          
         };
      vm.movies.push(movie);
+   };
+   
+   vm.checkCategorySelected=function checkCategorySelected(){
+       if(vm.newMovieCategory ===''){
+           window.alert('Category cannot be empty');
+       }
+   };
+   
+   vm.checkDescription = function checkDescription(){
+       console.debug(vm.newMovieDescription);
+       
    };
   };
   
