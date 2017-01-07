@@ -49,9 +49,21 @@
     </div>
 
     <div class="container">
-        <div ng-controller="MainCtrl as mc"><!-- ControllerAs syntax, mc punta ad un'istanza di MainCtrl -->
-            <h1>Titolo: {{movieTitle}}</h1> <!--Utilizzo il vecchio $scope -->
-            <div ng-bind="mc.movieDescription"></div> <!-- Utilizzo il nuovo metodo ControllerAs di ANgularJS 1.2-->
+        <div ng-controller="SubCtrl">
+                Sono fuori dal mainCtrl -> non ho l'ereditarietà, pertanto non verrà visualizzato il numero di film available: {{title}}    {{mc.movies.length}}
+            </div>
+        <div  ng-controller="MainCtrl as mc"><!-- ControllerAs syntax, mc punta ad un'istanza di MainCtrl -->
+            <div ng-controller="SubCtrl">
+                Sono dentro il MainCtrl -> ho l'ereditarietà e posso vedere tutto ciò che è dentro il MainCtrl (variabili, metodi) {{title}}    {{mc.movies.length}}
+            </div>
+            <div ng-repeat="movie in mc.movies" style="float: left;">
+                <h3>Titolo: {{movie.title}}</h3> 
+                <img   ng-src='{{movie.image}}'  style="float: left;" />
+                <p ng-bind="movie.description"></p> 
+            </div>
+        </div>
+        <div ng-controller="FormCtrl">
+            Title: <input type='text' name='title'>
         </div>
     </div>
 
