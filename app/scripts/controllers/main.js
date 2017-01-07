@@ -1,3 +1,6 @@
+(function(){
+    
+
 'use strict';
 
 /**
@@ -8,10 +11,10 @@
  * Controller of the movieManiaApp
  */
 angular.module('movieManiaApp')
-  .controller('MainCtrl', function () {
-    this.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+  .controller('MainCtrl', MainCtrl);
+      
+    function MainCtrl() {
+    var vm = this;
+    vm.title='Thank you for following this course';
+  };
+  })();
