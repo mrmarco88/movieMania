@@ -49,8 +49,9 @@
     </div>
 
     <div class="container">
-        <div ng-controller="MainCtrl as mc">
-            <h1>Titolo: {{mc.title}}</h1>
+        <div ng-controller="MainCtrl as mc"><!-- ControllerAs syntax, mc punta ad un'istanza di MainCtrl -->
+            <h1>Titolo: {{movieTitle}}</h1> <!--Utilizzo il vecchio $scope -->
+            <div ng-bind="mc.movieDescription"></div> <!-- Utilizzo il nuovo metodo ControllerAs di ANgularJS 1.2-->
         </div>
     </div>
 
