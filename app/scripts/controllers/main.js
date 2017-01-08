@@ -15,7 +15,7 @@ angular.module('movieManiaApp')
   .controller('FormCtrl', FormCtrl)
   .controller('SubCtrl', SubCtrl);
     
-    function MainCtrl($scope) {
+    function MainCtrl($scope,$http) {
     var vm = this;
     vm.title='Thank you for following this course';
     
@@ -38,7 +38,21 @@ angular.module('movieManiaApp')
     //vm.movieDescription=movie.description;
     //vm.movie=movie;
     //Fine primo esempio
-    var movieList = [{
+    
+   
+        $http.get('https://api.myjson.com/bins/wfj9b').then(function (response){
+        
+        console.debug(response.data);
+        console.debug("Primo film: "+response.data[0].title);
+        vm.movies=response.data; 
+        
+    },
+     function (response) {
+         console.log("ERROR in httpget method, http status: "+response.status);
+     });
+
+   /*
+        var movieList = [{
         title:'Assassin\'s Creed',
         image:'http://s3.foxmovies.com/foxmovies/production/films/111/images/posters/484-film-page-large.jpg',
         category:'Azione',
@@ -53,9 +67,9 @@ angular.module('movieManiaApp')
         image:'http://guidatv.sky.it/app/guidatv/images/epgimages/2012/12/27/sette-anni-in-tibet-visore.13318_big.jpg',
         category:'Drammatico',
         description:'Sette anni in Tibet (Seven Years in Tibet) è un film del 1997 diretto da Jean-Jacques Annaud, ispirato ad un libro autobiografico scritto da Heinrich Harrer e pubblicato nel 1953.La colonna sonora è composta da John Williams. I soli del violoncello sono eseguiti da Yo-Yo Ma.'
-    }];
+    }];*/
 
-    vm.movies=movieList; //se uso il ControllerAs nella vista devo usare movie in mc.movies
+    //vm.movies=movieList; //se uso il ControllerAs nella vista devo usare movie in mc.movies
    //$scope.movies=movieList; //se uso lo scope, nella vista devo usare solo movie
    vm.newMovieTitle='';
    vm.newMovieDescription='';
@@ -73,6 +87,12 @@ angular.module('movieManiaApp')
        image:'http://www.101cosedafare.it/wp-content/uploads/2012/10/ciak.png',
        category:'',
        description:''
+   };
+   vm.closed=false;
+   vm.isValid = function isValid() {
+       if(vm.movie.title.length>0 && vm.movie.category !=='' && vm.movie.description.length>0)
+           return true;
+     return false;  
    };
    vm.addMovie = function addMovie(){
      /*var movie = {
