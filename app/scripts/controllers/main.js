@@ -121,13 +121,14 @@
     ;
 
     function CarouselDemoCtrl($scope) {
-        $scope.myInterval = 5000;
-        $scope.noWrapSlides = false;
-        $scope.active = 0;
-        var slides = $scope.slides = [];
+        var vm = this;
+        vm.myInterval = 5000;
+        vm.noWrapSlides = false;
+        vm.active = 0;
+        var slides = vm.slides = [];
         var currIndex = 0;
 
-        $scope.addSlide = function () {
+        vm.addSlide = function () {
             var newWidth = 600 + slides.length + 1;
             slides.push({
                 image: '//unsplash.it/' + newWidth + '/300',
@@ -136,13 +137,13 @@
             });
         };
 
-        $scope.randomize = function () {
+        vm.randomize = function () {
             var indexes = generateIndexesArray();
             assignNewIndexesToSlides(indexes);
         };
 
         for (var i = 0; i < 4; i++) {
-            $scope.addSlide();
+            vm.addSlide();
         }
 
         // Randomize logic below
