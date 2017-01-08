@@ -45,7 +45,7 @@ angular.module('movieManiaApp')
         description:'Assassin\'s Creed è un film del 2016 diretto da Justin Kurzel.Basato sull\'omonima serie videoludica sviluppata da Ubisoft, anche produttrice della pellicola, il film è una storia originale ambientata nello stesso universo dei videogiochi.'
     },{
         title:'Inception',
-        image:'http://www.ilgiornale.it/sites/default/files/foto/2015/06/04/1433427454-inception.jpg',
+        image:'https://static.independent.co.uk/s3fs-public/styles/article_small/public/thumbnails/image/2015/06/03/13/inception.jpg',
         category:'Azione',
         description:'Inception è un film del 2010 scritto, prodotto e diretto da Christopher Nolan e interpretato da Leonardo DiCaprio, Tom Hardy, Ken Watanabe, Joseph Gordon-Levitt, Ellen Page, Marion Cotillard e Cillian Murphy, vincitore di 4 premi Oscar 2011: miglior fotografia, miglior sonoro, miglior montaggio sonoro e migliori effetti speciali.'
     },{
@@ -62,33 +62,38 @@ angular.module('movieManiaApp')
    vm.newMovieImage='';
    
    vm.validateTitle =  function validateTitle() {
-       if(vm.newMovieTitle.length>0){
-           console.debug(vm.newMovieTitle);
+       if(vm.movie.title.length>0){
+           console.debug(vm.movie.title);
        }else{
            window.alert('Title is Required');
        }
    };
-    
+   vm.movie = {
+       title:'',
+       image:'http://www.101cosedafare.it/wp-content/uploads/2012/10/ciak.png',
+       category:'',
+       description:''
+   };
    vm.addMovie = function addMovie(){
-     var movie = {
+     /*var movie = {
          title:vm.newMovieTitle,
          //category: vm.newMovieCategory,
          image:vm.newMovieImage,
          description: vm.newMovieDescription,
          category:vm.newMovieCategory
          
-        };
-     vm.movies.push(movie);
+        };*/
+     vm.movies.push(this.movie);
    };
    
    vm.checkCategorySelected=function checkCategorySelected(){
-       if(vm.newMovieCategory ===''){
+       if(vm.movie.category ===''){
            window.alert('Category cannot be empty');
        }
    };
    
    vm.checkDescription = function checkDescription(){
-       console.debug(vm.newMovieDescription);
+       console.debug(vm.movie.description);
        
    };
   };
